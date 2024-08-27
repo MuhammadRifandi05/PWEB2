@@ -18,6 +18,6 @@ public function tampilkanDosen() {
 }
 }
 
-$Dosen1 = new Dosen("Pak Abdau", "12345678", "Pweb2");
+$Dosen1 = new Dosen("Pak Abdau", " 12345678 ", " Pweb2 ");
 echo $Dosen1->tampilkanDosen();
 ?>
