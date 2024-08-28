@@ -1,38 +1,32 @@
 <?php
-// Buat class Pengguna dengan metode aksesFitur().
+// Kelas dasar Pengguna dengan metode aksesFitur
 class Pengguna {
-
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesFitur";
     }
 }
 
-// Implementasikan aksesFitur() dengan cara berbeda di class Dosen dan Mahasiswa.
+// Kelas Dosen yang mewarisi dan mengubah implementasi metode aksesFitur
 class Dosen extends Pengguna {
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesDosen";
     }
 }
+
+// Kelas Mahasiswa yang mewarisi dan mengubah implementasi metode aksesFitur
 class Mahasiswa extends Pengguna {
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesMahasiswa";
     }
 }
 
-//Instansiasi objek dari class Dosen dan Mahasiswa, lalu panggil metode aksesFitur().
-$aksesPengguna= new Pengguna();
-$aksesDosen= new Dosen();
-$aksesMahasiswa= new Mahasiswa();
-echo $aksesPengguna->aksesFitur(). "<br>";
-echo $aksesDosen->aksesFitur(). "<br>";
-echo $aksesMahasiswa->aksesFitur(). "<br>";
+// Instansiasi objek dari masing-masing kelas
+$pengguna = new Pengguna();
+$dosen = new Dosen();
+$mahasiswa = new Mahasiswa();
+
+// Menampilkan hasil dari metode aksesFitur() masing-masing objek
+echo $pengguna->aksesFitur() . "<br>";
+echo $dosen->aksesFitur() . "<br>";
+echo $mahasiswa->aksesFitur() . "<br>";
 ?>

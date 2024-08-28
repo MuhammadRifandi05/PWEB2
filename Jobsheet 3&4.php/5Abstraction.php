@@ -1,34 +1,28 @@
 <?php
-// Buat class abstrak Pengguna dengan metode abstrak aksesFitur().
+// Kelas abstrak Pengguna dengan metode abstrak aksesFitur
 abstract class Pengguna {
-
-    public function __construct() {
-    }
-    
     abstract public function aksesFitur();
-
 }
 
-// Implementasikan aksesFitur() dengan cara berbeda di class Dosen dan Mahasiswa.
+// Kelas Dosen yang mengimplementasikan metode abstrak aksesFitur
 class Dosen extends Pengguna {
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesDosen";
     }
 }
+
+// Kelas Mahasiswa yang mengimplementasikan metode abstrak aksesFitur
 class Mahasiswa extends Pengguna {
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesMahasiswa";
     }
 }
 
-$aksesDosen= new Dosen();
-$aksesMahasiswa= new Mahasiswa();
-echo $aksesDosen->aksesFitur(). "<br>";
-echo $aksesMahasiswa->aksesFitur(). "<br>";
+// Instansiasi objek dari masing-masing kelas
+$dosen = new Dosen();
+$mahasiswa = new Mahasiswa();
+
+// Menampilkan hasil dari metode aksesFitur() masing-masing objek
+echo $dosen->aksesFitur() . "<br>";
+echo $mahasiswa->aksesFitur() . "<br>";
 ?>

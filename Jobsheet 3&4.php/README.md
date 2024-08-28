@@ -15,7 +15,6 @@ Kode ini menunjukkan cara membuat dan menggunakan kelas `Mahasiswa` dalam PHP, t
 - **Konstruktor**: Konstruktor digunakan untuk menginisialisasi atribut-atribut ketika objek dari kelas `Mahasiswa` dibuat.
 - **Metode tampilkanData()**: Metode ini mengembalikan informasi mahasiswa dalam bentuk string.
 
-
 ## Kodingan
 ```php
 <?php
@@ -46,14 +45,14 @@ echo $Mahasiswa1->tampilkanData();
 
 ## Hasil koding
 ```bash
-Nama: Muhammad Rifandi, Nim: 230102019, Jurusan: Teknik Informatika
+Muhammad Rifandi 230102019 Teknik Informatika
 ```
 # Encapsulation
-Kode ini mendemonstrasikan cara mengimplementasikan kelas `Mahasiswa` dengan atribut yang bersifat privat, serta metode getter dan setter untuk mengakses dan mengubah nilai atribut tersebut.
+Kode ini mendemonstrasikan cara mengimplementasikan kelas Mahasiswa dengan atribut yang bersifat privat, serta metode getter dan setter untuk mengakses dan mengubah nilai atribut tersebut.
 
 ### **Fitur Utama**
-- **Atribut Privat**: atribut `Nama`, `Nim`, dan `Jurusan`bersifat privat, sehingga tidak bisa diakses langsung dari luar kelas..
-- **Konstruktor**: Konstruktor digunakan untuk menginisialisasi atribut-atribut ketika objek dari kelas `Mahasiswa` dibuat.
+- **Atribut Privat**: atribut Nama, Nim, dan `Jurusan`bersifat privat, sehingga tidak bisa diakses langsung dari luar kelas..
+- **Konstruktor**: Konstruktor digunakan untuk menginisialisasi atribut-atribut ketika objek dari kelas Mahasiswa dibuat.
 - **Metode Getter dan Setter**: Setiap atribut memiliki metode getter untuk mengambil nilai dan setter untuk mengubah nilai.
 
 ## Kodingan
@@ -118,35 +117,44 @@ Kode ini mendemonstrasikan konsep pewarisan (inheritance) dalam PHP dengan membu
 ## Kodingan
 ```php
 <?php
-// Buat class Pengguna dengan atribut nama dan metode getNama().
+// Kelas dasar Pengguna
 class Pengguna {
+    // Atribut yang bisa diakses oleh kelas turunan
     protected $nama;
 
+    // Konstruktor untuk menginisialisasi atribut
     public function __construct($nama) {
         $this->nama = $nama;
     }
 
+    // Getter untuk nama
     public function getNama() {
         return $this->nama;
     }
 }
-// Buat class Dosen yang mewarisi class Pengguna dan tambahkan atribut mataKuliah.
-class Dosen extends Pengguna {
-    private $Matakuliah;
 
-    public function __construct($nama, $Matakuliah) {
+// Kelas Dosen yang mewarisi dari Pengguna
+class Dosen extends Pengguna {
+    // Atribut tambahan untuk Dosen
+    private $matakuliah;
+
+    // Konstruktor untuk menginisialisasi atribut dari kelas dasar dan atribut tambahan
+    public function __construct($nama, $matakuliah) {
         parent::__construct($nama);
-        $this->Matakuliah = $Matakuliah;
+        $this->matakuliah = $matakuliah;
     }
 
+    // Getter untuk matakuliah
     public function getMatakuliah() {
-        return $this->Matakuliah;
+        return $this->matakuliah;
     }
 }
-// Instansiasi objek dari class Dosen dan tampilkan data dosen.
-$Dosen = new Dosen("Pak Abdau", "PWEB2");
-echo $Dosen->getNama();
-echo $Dosen->getMatakuliah() // Output: Pemrograman PHP
+
+// Instansiasi objek dari kelas Dosen
+$dosen = new Dosen("Pak Abdau", "PWEB2");
+// Menampilkan nama dan mata kuliah dosen
+echo $dosen->getNama() . " ";
+echo $dosen->getMatakuliah();
 ?>
 ```
 
@@ -166,42 +174,36 @@ Kode ini mendemonstrasikan konsep polimorfisme dalam PHP dengan membuat kelas `P
 ## Kodingan
 ```php
 <?php
-// Buat class Pengguna dengan metode aksesFitur().
+// Kelas dasar Pengguna dengan metode aksesFitur
 class Pengguna {
-
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesFitur";
     }
 }
 
-// Implementasikan aksesFitur() dengan cara berbeda di class Dosen dan Mahasiswa.
+// Kelas Dosen yang mewarisi dan mengubah implementasi metode aksesFitur
 class Dosen extends Pengguna {
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesDosen";
     }
 }
+
+// Kelas Mahasiswa yang mewarisi dan mengubah implementasi metode aksesFitur
 class Mahasiswa extends Pengguna {
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesMahasiswa";
     }
 }
 
-//Instansiasi objek dari class Dosen dan Mahasiswa, lalu panggil metode aksesFitur().
-$aksesPengguna= new Pengguna();
-$aksesDosen= new Dosen();
-$aksesMahasiswa= new Mahasiswa();
-echo $aksesPengguna->aksesFitur(). "<br>";
-echo $aksesDosen->aksesFitur(). "<br>";
-echo $aksesMahasiswa->aksesFitur(). "<br>";
+// Instansiasi objek dari masing-masing kelas
+$pengguna = new Pengguna();
+$dosen = new Dosen();
+$mahasiswa = new Mahasiswa();
+
+// Menampilkan hasil dari metode aksesFitur() masing-masing objek
+echo $pengguna->aksesFitur() . "<br>";
+echo $dosen->aksesFitur() . "<br>";
+echo $mahasiswa->aksesFitur() . "<br>";
 ?>
 ```
 
@@ -223,38 +225,32 @@ Kode ini mendemonstrasikan penggunaan kelas abstrak dalam PHP dengan membuat kel
 ## Kodingan
 ```php
 <?php
-// Buat class abstrak Pengguna dengan metode abstrak aksesFitur().
+// Kelas abstrak Pengguna dengan metode abstrak aksesFitur
 abstract class Pengguna {
-
-    public function __construct() {
-    }
-    
     abstract public function aksesFitur();
-
 }
 
-// Implementasikan aksesFitur() dengan cara berbeda di class Dosen dan Mahasiswa.
+// Kelas Dosen yang mengimplementasikan metode abstrak aksesFitur
 class Dosen extends Pengguna {
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesDosen";
     }
 }
+
+// Kelas Mahasiswa yang mengimplementasikan metode abstrak aksesFitur
 class Mahasiswa extends Pengguna {
-    public function __construct() {
-    }
-    
     public function aksesFitur() {
         return "aksesMahasiswa";
     }
 }
 
-$aksesDosen= new Dosen();
-$aksesMahasiswa= new Mahasiswa();
-echo $aksesDosen->aksesFitur(). "<br>";
-echo $aksesMahasiswa->aksesFitur(). "<br>";
+// Instansiasi objek dari masing-masing kelas
+$dosen = new Dosen();
+$mahasiswa = new Mahasiswa();
+
+// Menampilkan hasil dari metode aksesFitur() masing-masing objek
+echo $dosen->aksesFitur() . "<br>";
+echo $mahasiswa->aksesFitur() . "<br>";
 ?>
 ```
 

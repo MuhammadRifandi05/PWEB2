@@ -1,9 +1,5 @@
 # Jobsheet pertemuan 1 dan 2
-Penggunaan kelas dan objek adalah inti dari pemrograman berorientasi objek
-(OOP). Dalam PHP, kelas digunakan untuk mendefinisikan struktur dan perilaku objek,
-sedangkan objek adalah instansiasi dari kelas tersebut. Dengan memanfaatkan kelas
-dan objek, kode dapat diorganisir dengan lebih baik, lebih mudah dipelihara, dan dapat
-digunakan kembali.
+Penggunaan kelas dan objek adalah inti dari pemrograman berorientasi objek (OOP). Dalam PHP, kelas mendefinisikan struktur dan perilaku objek, sementara objek adalah instansiasi dari kelas tersebut. Dengan memanfaatkan kelas dan objek, kode dapat diorganisir dengan lebih baik, lebih mudah dipelihara, dan dapat digunakan kembali.
 
 # Implementasi Constructor
 Kode ini menunjukkan cara membuat dan menggunakan kelas `Mahasiswa` dalam PHP. Kelas ini mendefinisikan atribut-atribut dasar yang biasanya dimiliki oleh seorang mahasiswa, seperti `Nama`, `Nim`, dan `Jurusan`.
@@ -17,37 +13,30 @@ Kode ini menunjukkan cara membuat dan menggunakan kelas `Mahasiswa` dalam PHP. K
 ## Kodingan
 ```php
 <?php
-// Menambah Atribut CLASS
 class Mahasiswa {
-    // Mendeklarasikan atribut publik 'Nama', 'Nim', dan 'Jurusan' untuk menyimpan informasi mahasiswa.
-    public $Nama;
-    public $Nim;
-    public $Jurusan;
+    // Atribut publik untuk menyimpan informasi mahasiswa.
+    public $nama;
+    public $nim;
+    public $jurusan;
 
-    // Tambahkan constructor pada CLASS Mahasiswa yang akan menginisialisasi atribut nama, nim, dan jurusan.
-    // Konstruktor ini akan dipanggil saat objek dari kelas Mahasiswa dibuat dan akan mengatur nilai awal atribut 'Nama', 'Nim', dan 'Jurusan'.
-    public function __construct($Nama, $Nim, $Jurusan) {
-        $this->Nama = $Nama;         // Menginisialisasi atribut 'Nama' dengan nilai yang diberikan.
-        $this->Nim = $Nim;           // Menginisialisasi atribut 'Nim' dengan nilai yang diberikan.
-        $this->Jurusan = $Jurusan;   // Menginisialisasi atribut 'Jurusan' dengan nilai yang diberikan.
+    // Konstruktor untuk menginisialisasi atribut saat objek dibuat.
+    public function __construct($nama, $nim, $jurusan) {
+        $this->nama = $nama;
+        $this->nim = $nim;
+        $this->jurusan = $jurusan;
     }
 
-    // Buat metode tampilkanData() dalam class Mahasiswa.
-    // Metode ini mengembalikan string yang berisi informasi mahasiswa seperti Nama, Nim, dan Jurusan.
+    // Metode untuk menampilkan data mahasiswa.
     public function tampilkanData() {
-        return "Mahasiswa: $this->Nama, $this->Nim, $this->Jurusan."; // Mengembalikan string berisi data mahasiswa.
+        return "Mahasiswa: $this->nama, $this->nim, $this->jurusan.";
     }
 }
 
-// Gunakan constructor ini untuk mengatur nilai awal dari atribut saat objek dibuat.
-// Membuat objek dari kelas Mahasiswa dengan Nama "Muhammad Rifandi", Nim "230102019", dan Jurusan "Teknik Informatika".
-$Mahasiswa1 = new Mahasiswa("Muhammad Rifandi", "230102019", "Teknik Informatika");
-
-// Menampilkan data mahasiswa yang dihasilkan oleh metode tampilkanData().
-echo $Mahasiswa1->tampilkanData();
+// Membuat objek Mahasiswa dan menampilkan datanya.
+$mahasiswa1 = new Mahasiswa("Muhammad Rifandi", "230102019", "Teknik Informatika");
+echo $mahasiswa1->tampilkanData();
 ?>
 ```
-
 ## Hasil koding
 ```bash
 Mahasiswa: Muhammad Rifandi, 230102019, Teknik Informatika.
@@ -63,28 +52,26 @@ Kode ini menunjukkan cara membuat kelas `Mahasiswa` dengan atribut dasar dan met
 ## Kodingan
 ```php
 <?php
-// Menambah Atribut dan Metode
 class Mahasiswa {
-    public $Nama;       // Deklarasi atribut 'Nama' yang bersifat public.
-    public $Nim;        // Deklarasi atribut 'Nim' yang bersifat public.
-    public $Jurusan;    // Deklarasi atribut 'Jurusan' yang bersifat public.
+    public $nama;
+    public $nim;
+    public $jurusan;
 
-    // Buat metode tampilkanData() dalam class Mahasiswa.
+    // Metode untuk menampilkan data mahasiswa.
     public function tampilkanData() {
-        // Metode ini mengembalikan sebuah string yang berisi data dari atribut Nama, Nim, dan Jurusan.
-        return "Mahasiswa: $this->Nama, $this->Nim, $this->Jurusan.";
+        return "Mahasiswa: $this->nama, $this->nim, $this->jurusan.";
     }
 }
 
-// Instansiasi objek dari class Mahasiswa dan tampilkan data mahasiswa tersebut.
-$Mahasiswa1 = new Mahasiswa();  // Membuat objek baru dari class Mahasiswa.
-$Mahasiswa1->Nama = "Muhammad Rifandi";  // Mengisi atribut 'Nama' dengan nilai "Muhammad Rifandi".
-$Mahasiswa1->Nim = "230102019";          // Mengisi atribut 'Nim' dengan nilai "230102019".
-$Mahasiswa1->Jurusan = "Teknik Informatika";  // Mengisi atribut 'Jurusan' dengan nilai "Teknik Informatika".
+// Membuat objek Mahasiswa dan mengisi atributnya.
+$mahasiswa1 = new Mahasiswa();
+$mahasiswa1->nama = "Muhammad Rifandi";
+$mahasiswa1->nim = "230102019";
+$mahasiswa1->jurusan = "Teknik Informatika";
 
-// Menampilkan data mahasiswa menggunakan metode tampilkanData() dari objek $Mahasiswa1.
-echo $Mahasiswa1->tampilkanData();  // Output: "Mahasiswa: Muhammad Rifandi, 230102019, Teknik Informatika."
-
+// Menampilkan data mahasiswa.
+echo $mahasiswa1->tampilkanData();
+?>
 ```
 
 ## Hasil koding
@@ -96,49 +83,39 @@ Kode ini mendemonstrasikan cara membuat kelas Mahasiswa dengan atribut dasar, me
 
 
 ### **Fitur Utama**
-- **Atribut Publik**: Kelas `Mahasiswa` memiliki tiga atribut publik, yaitu `Nama`, `Nim`, dan `Jurusan`.
-- **Konstruktor**: Konstruktor digunakan untuk menginisialisasi atribut-atribut ketika objek dari kelas `Mahasiswa` dibuat.
-- **Metode tampilkanData()**: Metode ini mengembalikan informasi mahasiswa dalam bentuk string.
 - **Metode updateJurusan()**: Metode ini memungkinkan perubahan jurusan mahasiswa setelah objek dibuat.
 
 ## Kodingan
 ```php
 <?php
-// Menambah Atribut dan Metode
 class Mahasiswa {
-    public $Nama;       // Atribut publik 'Nama' yang dapat diakses dari luar kelas.
-    public $Nim;        // Atribut publik 'Nim' yang dapat diakses dari luar kelas.
-    public $Jurusan;    // Atribut publik 'Jurusan' yang dapat diakses dari luar kelas.
+    public $nama;
+    public $nim;
+    public $jurusan;
 
-    // Tambahkan constructor pada kelas Mahasiswa yang akan menginisialisasi atribut nama, nim, dan jurusan.
-    public function __construct($Nama, $Nim, $Jurusan) {
-        $this->Nama = $Nama;           // Menginisialisasi atribut 'Nama' dengan nilai yang diberikan saat objek dibuat.
-        $this->Nim = $Nim;             // Menginisialisasi atribut 'Nim' dengan nilai yang diberikan saat objek dibuat.
-        $this->Jurusan = $Jurusan;     // Menginisialisasi atribut 'Jurusan' dengan nilai yang diberikan saat objek dibuat.
+    // Konstruktor untuk menginisialisasi atribut saat objek dibuat.
+    public function __construct($nama, $nim, $jurusan) {
+        $this->nama = $nama;
+        $this->nim = $nim;
+        $this->jurusan = $jurusan;
     }
 
-    // Buat metode tampilkanData() dalam class Mahasiswa.
+    // Metode untuk menampilkan data mahasiswa.
     public function tampilkanData() {
-        // Mengembalikan string yang berisi informasi nama, NIM, dan jurusan mahasiswa.
-        return "Mahasiswa: $this->Nama, $this->Nim, $this->Jurusan.";
+        return "Mahasiswa: $this->nama, $this->nim, $this->jurusan.";
     }
 
-    // Buat metode updateJurusan() dalam kelas Mahasiswa yang memungkinkan perubahan jurusan.
-    public function updateJurusan($Jurusan) {
-        // Mengubah nilai atribut 'Jurusan' dengan nilai yang baru.
-        $this->Jurusan = $Jurusan;
+    // Metode untuk memperbarui jurusan mahasiswa.
+    public function updateJurusan($jurusan) {
+        $this->jurusan = $jurusan;
     }
 }
 
-// Gunakan constructor ini untuk mengatur nilai awal dari atribut saat objek dibuat.
-$Mahasiswa1 = new Mahasiswa("Muhammad Rifandi", "230102019", "Teknik Informatika");
-
-// Memanggil metode updateJurusan() untuk mengubah jurusan mahasiswa.
-$Mahasiswa1->updateJurusan("Teknik Mesin");
-
-// Menampilkan data mahasiswa setelah perubahan jurusan.
-echo $Mahasiswa1->tampilkanData();
-
+// Membuat objek Mahasiswa, memperbarui jurusan, dan menampilkan datanya.
+$mahasiswa1 = new Mahasiswa("Muhammad Rifandi", "230102019", "Teknik Informatika");
+$mahasiswa1->updateJurusan("Teknik Mesin");
+echo $mahasiswa1->tampilkanData();
+?>
 ```
 
 ## Hasil koding
@@ -149,49 +126,40 @@ Mahasiswa: Muhammad Rifandi, 230102019, Teknik Mesin.
 Kode ini menunjukkan cara membuat kelas `Mahasiswa` dengan atribut dasar, serta metode untuk menampilkan dan memperbarui data mahasiswa, termasuk mengubah jurusan dan NIM.
 
 ### **Fitur Utama**
-### **Fitur Utama**
-- **Atribut Publik**: Kelas `Mahasiswa` memiliki tiga atribut publik, yaitu `Nama`, `Nim`, dan `Jurusan`.
-- **Konstruktor**: Konstruktor digunakan untuk menginisialisasi atribut-atribut ketika objek dari kelas `Mahasiswa` dibuat.
-- **Metode tampilkanData()**: Metode ini mengembalikan informasi mahasiswa dalam bentuk string.
-- **Metode updateJurusan()**: Metode ini memungkinkan perubahan jurusan mahasiswa setelah objek dibuat.
 - **Metode setNim()**: Metode ini memungkinkan perubahan nilai NIM mahasiswa.
 
 ## Kodingan
 ```php
 <?php
-// Menambah Atribut dan Metode
 class Mahasiswa {
-    public $Nama;
-    public $Nim;
-    public $Jurusan;
+    public $nama;
+    public $nim;
+    public $jurusan;
 
-//Tambahkan constructor pada kelas Mahasiswa yang akan menginisialisasi atribut nama, nim, dan jurusan.
-public function __construct($Nama,$Nim,$Jurusan) {
-    $this->Nama = $Nama;
-    $this->Nim = $Nim;
-    $this->Jurusan = $Jurusan;
+    public function __construct($nama, $nim, $jurusan) {
+        $this->nama = $nama;
+        $this->nim = $nim;
+        $this->jurusan = $jurusan;
+    }
+
+    public function tampilkanData() {
+        return "Mahasiswa: $this->nama, $this->nim, $this->jurusan.";
+    }
+
+    public function updateJurusan($jurusan) {
+        $this->jurusan = $jurusan;
+    }
+
+    public function setNim($nim) {
+        $this->nim = $nim;
+    }
 }
 
-//Buat metode tampilkanData() dalam class Mahasiswa.
-public function tampilkanData() {
-    return "Mahasiswa: $this->Nama, $this->Nim, $this->Jurusan.";
-}
-
-//Buat metode updateJurusan() dalam kelas Mahasiswa yang memungkinkan perubahan jurusan.
-public function updateJurusan($Jurusan){
-    $this->Jurusan = $Jurusan;
-}
-
-//Ubah nilai atribut nim dari objek Mahasiswa menggunakan metode setter.
-public function setNim($Nim){
-    $this->Nim = $Nim;
-}
-}
-//Gunakan constructor ini untuk mengatur nilai awal dari atribut saat objek dibuat.
-$Mahasiswa1 = new Mahasiswa("Muhammad Rifandi", "230102019", "Teknik Informatika");
-$Mahasiswa1->updateJurusan("Teknik Mesin"); //Jurusan menjadi berubah
-$Mahasiswa1->setNim("12345678910"); //nilai NIM jadi rubah angkanya
-echo $Mahasiswa1->tampilkanData();
+// Membuat objek Mahasiswa, memperbarui jurusan dan NIM, serta menampilkan data mahasiswa.
+$mahasiswa1 = new Mahasiswa("Muhammad Rifandi", "230102019", "Teknik Informatika");
+$mahasiswa1->updateJurusan("Teknik Mesin");
+$mahasiswa1->setNim("12345678910");
+echo $mahasiswa1->tampilkanData();
 ?>
 ```
 
