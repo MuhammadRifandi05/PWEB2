@@ -1,115 +1,108 @@
 <?php
-// Buat class Person dengan atribut name dan metode getName().
-class person {
-    private $name;  // Mendeklarasikan atribut 'name' yang bersifat protected, sehingga bisa diakses oleh kelas turunan.
-    
-    // Konstruktor untuk menginisialisasi atribut 'name' saat objek dari kelas Person dibuat.
+// Kelas Person sebagai induk dari Lecturer dan Student
+class Person {
+    protected $name;
+
     public function __construct($name) {
         $this->name = $name;
     }
 
-    // Fungsi untuk mengubah nilai atribut 'name'.
-    public function setName($Name){
-        $this->name = $Name;
-    }
-
-    // Fungsi untuk mengembalikan nilai atribut 'name'.
     public function getName() {
         return $this->name;
     }
 
-    public function getRole(){
-        return "Saya adalah ";
+    // Metode yang akan dioverride oleh kelas turunan
+    public function getRole() {
+        return "Unknown Role";
     }
 }
 
-// Buat class Student yang mewarisi dari Person dan tambahkan atribut studentID serta metode getStudentID().
-class student extends person {
-    private $studentID;  // Mendeklarasikan atribut 'studentID' yang bersifat private, hanya bisa diakses di dalam kelas Student itu sendiri.
+// Kelas Lecturer mewarisi Person
+class Lecturer extends Person {
+    private $nidn;
 
-    // Konstruktor untuk menginisialisasi atribut 'name' dan 'studentID' saat objek dari kelas Student dibuat.
-    public function __construct($Name, $studentID){
-        parent::setName($Name);  // Memanggil metode setName dari kelas induk (Person) untuk menginisialisasi 'name'.
-        $this->studentID = $studentID;  // Menginisialisasi atribut 'studentID' dengan nilai yang diberikan.
-    }
-    
-    // Fungsi untuk mengembalikan nilai atribut 'studentID'.
-    public function getStudentID() {
-        return "$this->studentID";
+    public function __construct($name, $nidn) {
+        parent::__construct($name);
+        $this->nidn = $nidn;
     }
 
-    public function setStudentID($id){
-        $this->studentID = $id;
-
+    // Override metode getRole
+    public function getRole() {
+        return "Lecturer";
     }
 
-    public function setName($name){
-        parent::setName($name);
-    }
-    
-    public function getName(){
-        parent::getName();
+    // Mendapatkan NIDN
+    public function getNidn() {
+        return $this->nidn;
     }
 
-}
-
-// Buat class Teacher yang juga mewarisi dari Person dan menambahkan atribut teacherID.
-class Teacher extends person {
-    private $teacherID;  // Mendeklarasikan atribut 'teacherID' yang bersifat private.
-
-    // Konstruktor untuk menginisialisasi atribut 'name' saat objek dari kelas Teacher dibuat.
-    public function __construct($name){
-        parent::setName($name);  // Memanggil metode setName dari kelas induk (Person) untuk menginisialisasi 'name'.
-    }
-
-    // Overriding fungsi getName() dari kelas Person untuk memberikan nilai tambahan " SAYANG ASEP " pada output.
-    public function getName(){
-        return parent::getName() . " okeeee ";
+    // Mengatur NIDN
+    public function setNidn($nidn) {
+        $this->nidn = $nidn;
     }
 }
 
-class dosen extends person{
-    public function __construct($name){
-        parent::setName($name);
+// Kelas Student mewarisi Person
+class Student extends Person {
+    private $nim;
+
+    public function __construct($name, $nim) {
+        parent::__construct($name);
+        $this->nim = $nim;
     }
 
-    public function getRole(){
-        return parent::getRole() .  "dosen";
+    // Override metode getRole
+    public function getRole() {
+        return "Student";
+    }
+
+    // Mendapatkan NIM
+    public function getNim() {
+        return $this->nim;
+    }
+
+    // Mengatur NIM
+    public function setNim($nim) {
+        $this->nim = $nim;
     }
 }
 
-class mahasiswa extends person{
-    public function __construct($name){
-        parent::setName($name);
+// Kelas abstrak Jurnal
+abstract class Jurnal {
+    protected $judul;
+
+    public function __construct($judul) {
+        $this->judul = $judul;
     }
 
-    public function getRole(){
-        return parent::getRole() . "mahasiswa";
-    }
-
-    
+    // Metode abstrak untuk pengajuan jurnal
+    abstract public function submit();
 }
 
-// Membuat objek dari kelas Person dengan nama "Asep".
-$person = new person("Abi");
+// Kelas JurnalLecturer mewarisi Jurnal
+class JurnalLecturer extends Jurnal {
+    public function submit() {
+        return "Jurnal Lecturer '{$this->judul}' is being borrowed.";
+    }
+}
 
-// Membuat objek dari kelas Student dengan nama "Rifandi" dan studentID 12345.
-$student = new student("Rifandi", 12345);
+// Kelas JurnalStudent mewarisi Jurnal
+class JurnalStudent extends Jurnal {
+    public function submit() {
+        return "Jurnal Student '{$this->judul}' is being borrowed.";
+    }
+}
 
-// Menampilkan nama dari objek Person dan studentID dari objek Student.
-echo $person->getName() . " Yasa " . $student->getStudentID(); // Output: Abi Yasa 12345
+// Contoh penggunaan
+$lecturer = new Lecturer("Pak Abdau", "0934783");
+$student = new Student("Muhammad Rifandi", "230102019");
 
-echo "<br>";
-// Menampilkan nama dari objek Person dan studentID dari objek Student.
-$student->setName("okeeee");
-$student->setStudentID(54321); // Output: Abi Yasa 12345
+echo $lecturer->getName() . " is a person " . $lecturer->getRole() . " with NIDN: " . $lecturer->getNidn() . "<br>";
+echo $student->getName() . " is a person " . $student->getRole() . " with NIM: " . $student->getNim() . "<br>";
 
-echo "<br>";
+$jurnalLecturer = new JurnalLecturer("Programmer VS AI");
+$jurnalStudent = new JurnalStudent("Tutorial OOP");
 
-echo $student->getName() . " Yasa " . $student->getStudentID(); // Output: Abi Yasa 12345
-// Membuat objek dari kelas Teacher dengan nama "Muhammad Rifandi".
-$teacher = new Teacher("Muhammad Rifandi");
-
-echo "<br>";
-// Menampilkan nama dari objek Teacher yang sudah ditambahkan dengan " okeee ".
-echo $teacher->getName();
+echo $jurnalLecturer->submit() . "<br>";
+echo $jurnalStudent->submit() . "<br>";
+?>
